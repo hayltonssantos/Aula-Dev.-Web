@@ -8,11 +8,13 @@ import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom'
 import ProtectedRoutes from './pages/ProtectedRoutes'
 import { UserProvider } from './context/user'
 import SingUp from './Pages/SingUp/SingUp'
+import { GameProvider } from './context/game'
 
 function App() {
 
   return (
     <>
+    <GameProvider>
       <UserProvider>
         <BrowserRouter>
           <Routes>
@@ -28,6 +30,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </UserProvider>
+    </GameProvider>
 
 
       {/* <Login />
