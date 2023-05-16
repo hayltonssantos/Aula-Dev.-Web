@@ -5,11 +5,13 @@ import { UserContext } from '../../context/user'
 
 import firebaseApp from '../../services/firebase'
 
-import { getFirestore,addDoc, collection, getDocs, onSnapshot, query } from 'firebase/firestore'
+import { getFirestore,addDoc, collection, getDocs, onSnapshot, query, where } from 'firebase/firestore'
+import { GameContext } from '../../context/game'
 
 const Dashboard = () => {
 
     const { signOut, user } = useContext(UserContext)
+    const { getPoints } = useContext(GameContext)
 
     const [message, setMessage] = useState();
     const [messages, setMessages] = useState<any>([]);
@@ -50,7 +52,7 @@ const Dashboard = () => {
     const db = getFirestore(firebaseApp)
 
     const handleAdd = async function(){
-
+         
         const message_json = {
             message,
             email: user.email
@@ -60,6 +62,8 @@ const Dashboard = () => {
         /* setMessages([...messages, message_json]) */
         
     }
+
+    
 
     return (
         <>
@@ -74,7 +78,7 @@ const Dashboard = () => {
             ))}
 
             <h1>Dashboard</h1>
-            <Link to="/game">JOGAR!</Link>
+            <Link to="/game" onClick={() => getPoints(user)}>JOGAR!</Link>
             <div onClick={() => signOut()}>Deslogar</div>
         </>
     )
