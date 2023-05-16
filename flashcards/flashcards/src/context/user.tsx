@@ -22,7 +22,7 @@ const UserProvider = ({ children }) => {
     }, [])
 
     const listenAuth = (userState: any) => {
-        console.log('listenAuth', userState)
+       /*  console.log('listenAuth', userState) */
         setUser(auth.currentUser)
         setLoading(false)
     }
@@ -30,27 +30,27 @@ const UserProvider = ({ children }) => {
 
 
     const signIn = (email: string, password: string) => {
-        console.log('xxx', email, password)
+        /* console.log('xxx', email, password) */
         setLoading(true)
         signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
 
 
         }).catch((error) => {
-            console.log('error', error)
+           /*  console.log('error', error) */
             setLoading(false)
         })
 
     }
 
     const signOut = () => {
-        console.log('sai!!!')
+        /* console.log('sai!!!') */
         setLoading(true)
 
         signOutFirebase(auth)
             .then(() => {
-                console.log("deslogado com sucesso")
+                /* console.log("deslogado com sucesso") */
             }).catch((error) => {
-                console.log('error', error)
+                /* console.log('error', error) */
                 setLoading(false)
             })
     }
@@ -66,7 +66,7 @@ const UserProvider = ({ children }) => {
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorMessage)
+            /* console.log(errorMessage) */
             // ..
         });
     }

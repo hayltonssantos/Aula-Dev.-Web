@@ -48,3 +48,19 @@ body {
     color: white;
     transform: rotateY(180deg);
 }
+
+.answer{
+    background-color: #03446A;
+}
+
+.cardOpenedContent {
+    position: relative;
+    transform: rotateY(180deg);
+    transition: transform 0.5s;
+
+    width: 500px;
+    height: 300px;
+    margin: 10px;
+    float: left;
+    perspective: 500px;
+}

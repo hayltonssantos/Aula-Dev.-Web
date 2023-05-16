@@ -1,13 +1,15 @@
-#container-topo {
+#containerTopo {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: black;
 }
 
-#container-topo .titulo {
+.titulo {
     flex: 1;
     font-size: 40px;
-    color: #ccc;
+    color: black;
+    font-family: 'Lily Script One';
 }
 
 #container-cards {}

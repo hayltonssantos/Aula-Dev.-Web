@@ -21,7 +21,7 @@ const Dashboard = () => {
         onSnapshot(q, (querySnapshot)=>{
             const aux: any = []
             querySnapshot.forEach((doc:any) =>{
-                console.log(doc.id, doc.data)
+                /* console.log(doc.id, doc.data) */
                 aux.push({
                     id: doc.id,
                     ...doc.data()

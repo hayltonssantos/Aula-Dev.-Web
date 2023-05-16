@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Login from './Pages/Login/Login'
-import Game from './pages/Game'
+import Game from './Pages/Game/Game'
 import Dashboard from './pages/Dashboard'
 
 import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom'
