@@ -41,7 +41,14 @@ body {
     font-size: 60px;
     border-radius: 5px;
     backface-visibility: hidden;
+    justify-content: center;
 }
+
+.front{
+    display: flex;
+    flex: 1;
+}
+
 
 .back {
     background: #03446A;
@@ -49,8 +56,35 @@ body {
     transform: rotateY(180deg);
 }
 
-.answer{
+.divCheck{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 10px;
+}
+
+.inputCheck{
     background-color: #03446A;
+    display: flex;
+    flex: 1;
+    height: 30px;
+    border-radius: 20px;
+    text-align: center;
+
+}
+
+.btnCheck{
+    position: relative;
+    bottom: 0;
+    margin: auto;
+    background-color: #03446A;
+    box-shadow: none;
+    color: #eee;
+    border-color:#03446A
+    
 }
 
 .cardOpenedContent {
