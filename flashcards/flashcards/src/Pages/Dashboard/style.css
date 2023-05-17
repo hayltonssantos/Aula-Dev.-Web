@@ -1,0 +1,109 @@
+
+.top{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: rgba(255, 136, 255, 0.745);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.title{
+    display: flex;
+    font-size: 40px;
+    align-items: center;
+    padding: 20px;
+}
+
+.user{
+    font-size: 20px;
+}
+
+.btnDeslogar{
+    background-color: red;
+    border:none;
+    box-shadow: none;
+    padding: 20px;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    
+}
+
+.userDiv{
+    display: flex;
+    bottom: 0;
+    width: 100%;
+}
+
+.userInformation{
+    display: inline;
+    margin: auto;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.howToPlay{
+    width: 500px;
+    height: 100px;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+
+}
+
+.jogar{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 200px;
+    justify-content: center;
+}
+
+.jogarLink{
+    font-size: 50px;
+    text-align: center;
+    flex-basis: 100%;
+}
+.jogarLink:hover{
+    font-size: 55px;
+    text-align: center;
+    color: rgb(107, 8, 107);
+    transition: 1s;
+}
+
+.containerMessage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.messageBox{
+    background-color: #fff;
+    padding: 20px;
+    overflow-y: scroll;
+    max-height: 400px;
+    min-width: 600px;
+    border-radius: 10px;    
+}
+
+.messageBox::-webkit-scrollbar{
+    width: 12px;
+}
+
+.messageBox::-webkit-scrollbar-track {
+    background: orange;
+    border-radius: 0px 20px 20px 0px;
+  }
+
+.messageBox::-webkit-scrollbar-thumb {
+    background-color: rgb(89, 0, 89);    /* color of the scroll thumb */
+    border-radius: 0px 20px 20px 0px;       /* roundness of the scroll thumb */
+    border: 3px solid rgb(89, 0, 89);  /* creates padding around scroll thumb */
+  }
+
+.inputMessage{
+    color: black;
+    animation: none;
+}

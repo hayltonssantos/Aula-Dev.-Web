@@ -10,10 +10,10 @@ import {
 
 const UserContext = createContext({})
 
-const UserProvider = ({ children }) => {
+const UserProvider = ({ children }: any) => {
 
     const auth = getAuth();
-    const [couldLogin, setCouldLogin] = useState(false)
+    const [couldLogin] = useState<any>(false)
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
 
@@ -21,9 +21,9 @@ const UserProvider = ({ children }) => {
         return onAuthStateChanged(auth, listenAuth)
     }, [])
 
-    const listenAuth = (userState: any) => {
+    const listenAuth = (/* userState: any */) => {
        /*  console.log('listenAuth', userState) */
-        setUser(auth.currentUser)
+        setUser(auth.currentUser as any)
         setLoading(false)
     }
 
@@ -32,10 +32,10 @@ const UserProvider = ({ children }) => {
     const signIn = (email: string, password: string) => {
         /* console.log('xxx', email, password) */
         setLoading(true)
-        signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+        signInWithEmailAndPassword(auth, email, password).then((/* userCredential */) => {
 
 
-        }).catch((error) => {
+        }).catch((/* error */) => {
            /*  console.log('error', error) */
             setLoading(false)
         })
@@ -49,7 +49,7 @@ const UserProvider = ({ children }) => {
         signOutFirebase(auth)
             .then(() => {
                 /* console.log("deslogado com sucesso") */
-            }).catch((error) => {
+            }).catch(() => {
                 /* console.log('error', error) */
                 setLoading(false)
             })
@@ -57,15 +57,15 @@ const UserProvider = ({ children }) => {
 
     const createUser = (email: string, password: string) => {
         createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
+        .then((/* userCredential */) => {
             // Signed in
-            const user = userCredential.user;
+           /*  const user = userCredential.user; */
             
             // ...
         })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
+        .catch((/* error */) => {
+            /* const errorCode = error.code;
+            const errorMessage = error.message; */
             /* console.log(errorMessage) */
             // ..
         });

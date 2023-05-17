@@ -5,30 +5,17 @@ import { useContext, useEffect, useState } from 'react'
 
 import firebaseApp from '../../services/firebase'
 
-import { getFirestore,addDoc, collection, getDocs, onSnapshot, query } from 'firebase/firestore'
+import { getFirestore, collection, onSnapshot, query } from 'firebase/firestore'
 import { GameContext } from '../../context/game'
+import { UserContext } from '../../context/user'
+import { Link } from 'react-router-dom'
 
 const Game = () => {
 
-/*     const [cards, setCards] = useState([
-        {
-            front: "Gato",
-            back: "Cat"
-        },
-        {
-            front: "Vaca",
-            back: "Cow"
-        },
-        {
-            front: "Cachorro",
-            back: "Dog"
-        }
-    ]) */
-
-    const [card, setCard] = useState();
     const [cards, setCards] = useState<any>([]);
 
-    const {point} = useContext(GameContext)
+    const {point}: any = useContext(GameContext)
+    const {signOut}: any = useContext(UserContext)
 
     useEffect(()=>{
 
@@ -50,27 +37,18 @@ const Game = () => {
 
     const db = getFirestore(firebaseApp)
 
-    const handleAdd = async function(){
-
-        const message_json = {
-            cards,
-        }
-
-        const docref = await addDoc(collection(db,'cards'), message_json)
-       /*  console.log(docref)  */
-        
-    }
-
-
     return (
         <>
             <div id={styles.containerTopo}>
                 <div className={styles.titulo}>FlashCard Challenge</div>
                 <Xp total={point} />
+                <div className='buttonsDiv'>
+                    <button className='' onClick={() => signOut()}>Logout</button>
+                    <Link to='/dashboard'> <button>Dashboard</button></Link>
+                </div>
             </div>
             <div id="container-cards">
-                {/* {cards.map((card => <Card content={card} />))} */}
-                {cards.map(getCard =><Card content={getCard}/>)}
+                {cards.map((getCard: any) =><Card content={getCard as any}/>)}
             </div>
         </>
     )

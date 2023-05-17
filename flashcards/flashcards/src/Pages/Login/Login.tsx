@@ -3,10 +3,12 @@ import styles from './Login.module.css'
 import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../context/user'
 import Input from '../../components/Input/Input'
+import { GameContext } from '../../context/game'
 
 const Login = () => {
 
-    const { user, signIn, loading } = useContext(UserContext)
+    const { user, signIn, loading }: any = useContext(UserContext)
+    const { getPoint}: any = useContext(GameContext)
     const navigate = useNavigate();
 
     const [email, setEmail] = useState();
@@ -27,8 +29,9 @@ const Login = () => {
         )
     }
 
-    const handleSingIn = (email: string, password: string) => {
+    const handleSingIn = async (email: string, password: string) => {
         signIn(email, password)
+        await getPoint()
     }
 
     return (
@@ -38,14 +41,15 @@ const Login = () => {
             <div className={styles.container}>
                 <div className={styles.form}>
                     <h1 className={styles.title}>FlashCard Challenge</h1>
+                    <p className={styles.title}>Login</p>
                     <Input type={'text'} onChange={setEmail} placeholder={'Email'} />
                     <Input type={'password'} onChange={setPassword} placeholder={'Password'} />
                     <div className={styles.buttons}>    
                         <button 
-                            onClick={() => {handleSingIn(email, password)}}>
-                            Sing In
+                            onClick={() => {handleSingIn(email as any, password as any)}}>
+                            Login
                         </button>
-                        <button onClick={() => {<Link to={'/singup'}/>}}>Sing Up</button>
+                        <Link to={'/singup'}><button>Register</button></Link>
                     </div>
                 </div>
             </div>

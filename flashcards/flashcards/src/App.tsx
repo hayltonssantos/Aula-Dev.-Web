@@ -1,11 +1,9 @@
-import { useState } from 'react'
 import './App.css'
 import Login from './Pages/Login/Login'
 import Game from './Pages/Game/Game'
-import Dashboard from './pages/Dashboard'
-
+import Dashboard from './Pages/Dashboard/Dashboard'
 import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom'
-import ProtectedRoutes from './pages/ProtectedRoutes'
+import ProtectedRoutes from './Pages/protectedroutes'
 import { UserProvider } from './context/user'
 import SingUp from './Pages/SingUp/SingUp'
 import { GameProvider } from './context/game'

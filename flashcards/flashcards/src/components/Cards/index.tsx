@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import './style.css'
 
-export default function Cards({content}) {
+export default function Cards({content}: any) {
 
   const [isOpened, setIsOpened] = useState(false)
   

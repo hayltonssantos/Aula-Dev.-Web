@@ -1,12 +1,12 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 import firebaseApp from '../../services/firebase'
 
-import { getFirestore,addDoc, collection, getDocs, onSnapshot, query, setDoc, updateDoc, doc } from 'firebase/firestore'
+import { getFirestore,collection, onSnapshot, query, setDoc, updateDoc, doc } from 'firebase/firestore'
 
 const GameContext = createContext({})
 
-const GameProvider = ({children}) =>{
+const GameProvider = ({children}: any) =>{
 
     const [point, setPoint] = useState(0)
     const db = getFirestore(firebaseApp)
@@ -17,12 +17,14 @@ const GameProvider = ({children}) =>{
         back = back.toLowerCase()
         
         if (response === back) {
-            handleAdd(user)
+            handleAdd(user, true)
             return true
+        }else{
+            handleAdd(user, false)
         }
     }
 
-    const attPoints = (user) =>{
+    const attPoints = (user: any) =>{
         const q = query(collection(db, 'points'))
         onSnapshot(q, (querySnapshot)=>{
             querySnapshot.forEach((doc:any) =>{
@@ -42,24 +44,31 @@ const GameProvider = ({children}) =>{
         })
     }
 
-    const getPoints = (user) =>{
+    const getPoints = (user: any) =>{
         attPoints(user)
         {aux.map((m: any)=>(
             setPoint(m.point)
          ))}
-         console.log('erds')
     }
     
-    const handleAdd = async function(user){
+    const handleAdd = async function(user: any, resp: any){
         attPoints(user)
-        const message_json = {
-            point: point + 10
-            
+        if (resp === true) {
+            const message_json = {
+                point: point + 10
+                
+            }
+            await setDoc(doc(db,`points/${user.email}`), message_json)
+            await updateDoc(doc(db,`points/${user.email}`), message_json)
+        }else{
+            const message_json = {
+                point: point - 2
+                
+            }
+            await setDoc(doc(db,`points/${user.email}`), message_json)
+            await updateDoc(doc(db,`points/${user.email}`), message_json)
         }
 
-        const doceref = await setDoc(doc(db,`points/${user.email}`), message_json)
-        const updateRef = await updateDoc(doc(db,`points/${user.email}`), message_json)
-        
     }
 
     return (

@@ -1,10 +1,9 @@
-import React from 'react'
 import styles from './Input.module.css'
 
-export default function Input({type, onChange, placeholder}) {
+export default function Input({type, onChange, placeholder}: any) {
   return (
     <input className={styles.input} type={type} 
-        onChange={(e) => {onChange(e.target.value)}} 
+        onChange={(e: any) => {onChange(e.target.value)}} 
         placeholder={placeholder}>
     </input>
   )

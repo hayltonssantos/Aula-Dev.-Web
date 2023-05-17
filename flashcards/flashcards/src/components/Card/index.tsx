@@ -1,22 +1,16 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import './style.css'
 import { GameContext } from '../../context/game'
 import { UserContext } from '../../context/user'
-import firebaseApp from '../../services/firebase'
 
-import { getFirestore,addDoc, collection, getDocs, onSnapshot, query, where, doc, documentId, setDoc, updateDoc, getDoc } from 'firebase/firestore'
-
-export default function Card({ content }) {
+export default function Card({ content }: any) {
 
     const [isOpened, setIsOpened] = useState(false)
     const [resp, setResp] = useState()
 
-    const {point, checkResponse} = useContext(GameContext)
-    const {user} = useContext(UserContext)
+    const {checkResponse}: any = useContext(GameContext)
+    const {user}: any = useContext(UserContext)
     
-    const db = getFirestore(firebaseApp)
-
-
     return (
         <div
             className={isOpened ? "card card-opened" : "card"}
@@ -28,7 +22,7 @@ export default function Card({ content }) {
                 <div className="front">
                     {content.front}
                     <div className='divCheck'>
-                        <input className='inputCheck' onChange={(e) => {setResp(e.target.value)}}></input>
+                        <input className='inputCheck' onChange={(e: any) => {setResp(e.target.value)}}></input>
                         <button className='btnCheck' onClick={() => {setIsOpened(checkResponse(resp, content.back,user))}}>Send</button>
                           {/* 
                         <button className='btnCheck' onClick={() => {handleAdd()}}>Send</button> */}

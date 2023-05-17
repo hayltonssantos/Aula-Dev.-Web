@@ -6,7 +6,7 @@ import Input from '../../components/Input/Input'
 
 const SingUp = () => {
 
-    const { user, signIn, loading, createUser } = useContext(UserContext)
+    const { user, loading, createUser }: any = useContext(UserContext)
     const navigate = useNavigate();
 
     const [email, setEmail] = useState();
@@ -27,22 +27,22 @@ const SingUp = () => {
         )
     }
 
-    const handleCreateUser = (email: string, password: string) => {
-        createUser(email, password)
+    const handleCreateUser = async (email: string, password: string) => {
+        await createUser(email, password)
+        navigate('/dashboard')
     }
 
     return (
         <>
-            {/* <h1 onClick={() => signIn("2019100133@aluno.unicarioca.edu.br", "2019100133")}>Login Haylton</h1>
-            <Link to="/dashboard">Ir para o Dashboard</Link>  */}
             <div className={styles.container}>
                 <div className={styles.form}>
-                    <h2 className={styles.title}>FlashCard Challenge</h2>
-                    <p className={styles.title}>Sing in</p>
+                    <h1 className={styles.title}>FlashCard Challenge</h1>
+                    <p className={styles.title}>Register</p>
                     <Input type={'text'} onChange={setEmail} placeholder={'Email'} />
                     <Input type={'password'} onChange={setPassword} placeholder={'Password'} />
                     <div className={styles.buttons}>    
-                        <button onClick={() => {handleCreateUser(email,password)}}>Sing Up</button>
+                        <button onClick={() => {handleCreateUser(email as any,password as any)}}>Register</button>
+                        <Link to={'/login'}><button>Back</button></Link>
                     </div>
                 </div>
             </div>
