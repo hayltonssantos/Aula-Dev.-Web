@@ -6,7 +6,7 @@ import Input from '../../components/Input/Input'
 
 const SingUp = () => {
 
-    const { user, loading, createUser }: any = useContext(UserContext)
+    const { user, loading, createUser, err }: any = useContext(UserContext)
     const navigate = useNavigate();
 
     const [email, setEmail] = useState();
@@ -29,15 +29,25 @@ const SingUp = () => {
 
     const handleCreateUser = async (email: string, password: string) => {
         await createUser(email, password)
-        navigate('/dashboard')
+        if (err) {
+            navigate('/singup')
+        }else{
+            navigate('/dashboard')
+        }
     }
 
+    const wrong = () =>{ if (err) {
+        return <p>Check your email, and type correctly</p>
+        
+    }}
     return (
         <>
             <div className={styles.container}>
                 <div className={styles.form}>
                     <h1 className={styles.title}>FlashCard Challenge</h1>
-                    <p className={styles.title}>Register</p>
+                    <p className={styles.title}>Register
+                        <p className={styles.title}>{wrong()}</p>
+                    </p>
                     <Input type={'text'} onChange={setEmail} placeholder={'Email'} />
                     <Input type={'password'} onChange={setPassword} placeholder={'Password'} />
                     <div className={styles.buttons}>    

@@ -7,12 +7,13 @@ import { GameContext } from '../../context/game'
 
 const Login = () => {
 
-    const { user, signIn, loading }: any = useContext(UserContext)
+    const { user, signIn, loading, err }: any = useContext(UserContext)
     const { getPoint}: any = useContext(GameContext)
     const navigate = useNavigate();
 
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+
 
     useEffect(() => {
         if (user) navigate("/dashboard")
@@ -34,6 +35,12 @@ const Login = () => {
         await getPoint()
     }
 
+   const wrong = () =>{ if (err) {
+        return <p>Wrong email or password</p>
+        
+    }}
+    
+
     return (
         <>
             {/* <h1 onClick={() => signIn("2019100133@aluno.unicarioca.edu.br", "2019100133")}>Login Haylton</h1>
@@ -41,7 +48,10 @@ const Login = () => {
             <div className={styles.container}>
                 <div className={styles.form}>
                     <h1 className={styles.title}>FlashCard Challenge</h1>
-                    <p className={styles.title}>Login</p>
+                    <p className={styles.title}>Login
+                        <p className={styles.title}>{wrong()}</p>
+                    </p>
+                    
                     <Input type={'text'} onChange={setEmail} placeholder={'Email'} />
                     <Input type={'password'} onChange={setPassword} placeholder={'Password'} />
                     <div className={styles.buttons}>    

@@ -16,6 +16,7 @@ const UserProvider = ({ children }: any) => {
     const [couldLogin] = useState<any>(false)
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [err, setErr] = useState<any>('')
 
     useEffect(() => {
         return onAuthStateChanged(auth, listenAuth)
@@ -36,7 +37,8 @@ const UserProvider = ({ children }: any) => {
 
 
         }).catch((/* error */) => {
-           /*  console.log('error', error) */
+           /* console.log('error', error) */
+           setErr(true)
             setLoading(false)
         })
 
@@ -59,20 +61,22 @@ const UserProvider = ({ children }: any) => {
         createUserWithEmailAndPassword(auth, email, password)
         .then((/* userCredential */) => {
             // Signed in
-           /*  const user = userCredential.user; */
+           /* const user = userCredential.user
+           console.log(user + 'aqqqq') */
             
             // ...
         })
-        .catch((/* error */) => {
+        .catch((/* error */ ) => {
             /* const errorCode = error.code;
-            const errorMessage = error.message; */
-            /* console.log(errorMessage) */
+            const errorMessage = error.message;
+            console.log(errorMessage + errorCode) */
+            setErr(true)
             // ..
         });
     }
 
     return (
-        <UserContext.Provider value={{ couldLogin, signIn, signOut, user, loading, createUser }}>
+        <UserContext.Provider value={{ couldLogin, signIn, signOut, user, loading, createUser, err }}>
             {children}
         </UserContext.Provider>
     )

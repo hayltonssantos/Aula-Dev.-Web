@@ -20,6 +20,6 @@ export default function Cards({content}: any) {
           {content.back}
         </div>
       </div>
-  </div>
+    </div>
   )
 }
